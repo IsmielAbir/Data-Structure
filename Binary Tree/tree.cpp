@@ -246,6 +246,8 @@ int main()
     string preordertraversal = "";
     string postordertraversal = "";
     string levelordertraversal = "";
+    
+
 
     boundaryTraversal(allNodes[0]);
 
