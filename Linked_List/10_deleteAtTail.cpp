@@ -125,7 +125,7 @@ void deleteAtTail(Node *&head){
     if(temp==NULL)
     cout<<"Its underflow"<<endl;
     else
-        deleteAtHead(head)
+        deleteAtHead(head);
 
     }
 }

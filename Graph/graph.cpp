@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 typedef pair<int, int> edgeWeightPair;
-class Graph{
+class Graph
+{
     int V;
     list<edgeWeightPair> *adj;
     
@@ -20,7 +22,7 @@ public:
         adj[v].push_back(make_pair(u, w));
     }
 
-    void print(int chk)
+    void printNeighbour(int chk)
     {
         cout << chk << ":";
         for (auto i = adj[chk].begin(); i != adj[chk].end(); i++)
@@ -28,13 +30,52 @@ public:
             cout << " (" << (*i).first << ", " << (*i).second << ")";
         }
     }
+
+    void BFS(int source)
+    {
+        vector<bool>visited(V,false);
+        queue<int> Q;
+        visited[source] = true;
+        Q.push(source);
+
+        while (!Q.empty())
+        {
+            int u = Q.front();
+            cout << u << " ";
+            Q.pop();
+            for (auto element : adj[u])
+            {
+                int v = element.first;
+                if (visited[v] != true)
+                {
+                    visited[v] = true;
+                    Q.push(v);
+                }
+            }
+        }
+    }
+
+    void DFS(int source)
+    {
+        static vector<bool>visited(V,false);
+        visited[source] = true;
+        cout << source << " ";
+
+        for (auto element : adj[source])
+        {
+            int v = element.first;
+            if (visited[v] != true)
+            {
+                DFS(v);
+            }
+        }
+    }
 };
 
 int main()
 {
-
-    int V, E;
-    cin >> V >> E;
+    int V, E, source;
+    cin >> V >> E >> source;
     Graph g(V);
     for (int i = 0; i < E; i++)
     {
@@ -45,13 +86,23 @@ int main()
 
     for (int i = 0; i < V; i++)
     {
-        g.print(i);
+        g.printNeighbour(i);
         cout << endl;
     }
-    
 
+    cout << endl
+         << endl;
+
+    g.BFS(source);
+    cout << endl
+         << endl;
+    g.DFS(source);
+
+    cout << endl
+         << endl;
     return 0;
 }
+
 
 /*
 input
