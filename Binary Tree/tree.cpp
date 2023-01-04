@@ -246,9 +246,9 @@ int main()
     string preordertraversal = "";
     string postordertraversal = "";
     string levelordertraversal = "";
-    
+    postOrder(allNodes[0], postordertraversal);
 
-
+    cout<<postordertraversal<<endl;
     boundaryTraversal(allNodes[0]);
 
     cout << endl;
